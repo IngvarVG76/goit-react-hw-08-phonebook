@@ -1,11 +1,9 @@
 import React, { Suspense } from 'react';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts, refreshUserThunk } from 'redux/operations';
+import { useDispatch } from 'react-redux';
+import {  refreshUserThunk } from 'redux/operations';
 import {
   selectAuthentificated,
-  selectError,
-  selectIsLoading,
   selectToken,
 } from 'redux/selectors';
 
