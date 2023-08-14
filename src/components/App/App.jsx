@@ -16,7 +16,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (!selectToken || !selectAuthentificated) return;
+    // if (!selectToken || selectAuthentificated) return;
     if (!selectAuthentificated) return;
 
     dispatch(refreshUserThunk());
