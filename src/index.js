@@ -11,7 +11,7 @@ import App from 'components/App/App';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={<p>loading...</p>} persistor={persistor}>
       <ThemeProvider theme={theme}>
@@ -20,8 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <App />
         </BrowserRouter>
       </ThemeProvider>
-
       </PersistGate>
     </Provider>
-  // </React.StrictMode>
+  </React.StrictMode>
 );

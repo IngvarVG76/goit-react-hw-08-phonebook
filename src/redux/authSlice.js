@@ -33,7 +33,7 @@ const authSlice = createSlice({
                 state.token = action.payload.token;
             })
             .addCase(loginUserThunk.pending, handlePending)
-            .addCase(loginUserThunk.rejected, handlePending)
+            .addCase(loginUserThunk.rejected, handleRejected)
             .addCase(loginUserThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.authentificated = true;
