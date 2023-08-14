@@ -32,7 +32,6 @@ const authSlice = createSlice({
                 state.userData = action.payload.user;
                 state.token = action.payload.token;
             })
-            // ----- LOGIN -----
             .addCase(loginUserThunk.pending, handlePending)
             .addCase(loginUserThunk.rejected, handlePending)
             .addCase(loginUserThunk.fulfilled, (state, action) => {
@@ -41,7 +40,6 @@ const authSlice = createSlice({
                 state.userData = action.payload.user;
                 state.token = action.payload.token;
             })
-            // ----- REFRESH -----
             .addCase(refreshUserThunk.pending, handlePending)
             .addCase(refreshUserThunk.rejected, handleRejected)
             .addCase(refreshUserThunk.fulfilled, (state, action) => {
@@ -49,7 +47,6 @@ const authSlice = createSlice({
                 state.authentificated = true;
                 state.userData = action.payload;
             })
-            // ----- LOGOUT -----
             .addCase(logoutUserThunk.pending, handlePending)
             .addCase(logoutUserThunk.rejected, handleRejected)
             .addCase(logoutUserThunk.fulfilled, (state, action) => {

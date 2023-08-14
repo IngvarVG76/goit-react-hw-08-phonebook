@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
 
-import { Header, Nav, StyledNavLink } from './SharedLayout.styled';
-import { selectAuthentificated } from 'redux/selectors';
+import { CustomFcBusinessman, Header, LogOutBtn, LogedInNav, LogedOutNav, Nav, StyledNavLink, UserEmail, UserInfo } from './SharedLayout.styled';
+import { selectAuthentificated, selectUserData } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserThunk } from 'redux/operations';
 
 export const SharedLayout = () => {
-    // const token = useSelector(selectToken);
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const authentificated = useSelector(selectAuthentificated);
-
+  const userData = useSelector(selectUserData);
+  
   const handleLogOut = () => {
     dispatch(logoutUserThunk());
   };
@@ -18,19 +18,24 @@ export const SharedLayout = () => {
     <div>
       <Header>
         <Nav>
-          <StyledNavLink to="/">Home</StyledNavLink>
           {authentificated ? (
-            <div>
+            <LogedInNav>
+              <StyledNavLink to="/">Home</StyledNavLink>
               <StyledNavLink to="/contacts">Contacts</StyledNavLink>
-              <button type="button" onClick={handleLogOut}>
-                Log Out
-              </button>
-            </div>
+              <UserInfo>
+                <CustomFcBusinessman />
+                <UserEmail>{userData.email}</UserEmail>
+                <LogOutBtn type="button" onClick={handleLogOut}>
+                  Log Out
+                </LogOutBtn>
+              </UserInfo>
+            </LogedInNav>
           ) : (
-            <div>
-              <StyledNavLink to="/register">Register account</StyledNavLink>
+            <LogedOutNav>
+              <StyledNavLink to="/">Home</StyledNavLink>
+              <StyledNavLink to="/register">Register</StyledNavLink>
               <StyledNavLink to="/login">Sign in</StyledNavLink>
-            </div>
+            </LogedOutNav>
           )}
         </Nav>
       </Header>

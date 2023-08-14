@@ -1,11 +1,8 @@
 import React, { Suspense } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {  refreshUserThunk } from 'redux/operations';
-import {
-  selectAuthentificated,
-  selectToken,
-} from 'redux/selectors';
+import { refreshUserThunk } from 'redux/operations';
+import { selectAuthentificated, selectToken } from 'redux/selectors';
 
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
@@ -17,20 +14,12 @@ import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 
 const App = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
-  // const token = useSelector(selectToken);
-  // const authentificated = useSelector(selectAuthentificated);
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (!selectToken || selectAuthentificated) return;
 
-    useEffect(() => {
-      if (!selectToken || selectAuthentificated) return;
-
-      dispatch(refreshUserThunk());
-    }, [dispatch]);
+    dispatch(refreshUserThunk());
+  }, [dispatch]);
 
   return (
     <div>

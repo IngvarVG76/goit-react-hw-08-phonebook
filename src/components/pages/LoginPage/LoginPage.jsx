@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { selectAuthentificated } from 'redux/selectors';
 import { loginUserThunk } from 'redux/operations';
+import { Heading, Main } from '../HomePage/HomePage.styled';
+import { Form, FormBtn, FormInput, FormLabel } from './LoginPage.styled';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -12,7 +14,6 @@ const LoginPage = () => {
     event.preventDefault();
 
     const form = event.currentTarget;
-
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
 
@@ -27,22 +28,27 @@ const LoginPage = () => {
   if (authenticated) return <Navigate to="/contacts" />;
 
   return (
-    <div>
-      <h1>Login Into Your Account</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email:</p>
-          <input name="userEmail" type="email" required />
-        </label>
-        <br />
-        <label>
-          <p>Password:</p>
-          <input name="userPassword" type="password" required minLength={7} />
-        </label>
-        <br />
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+    <Main>
+      <Heading>Login Into Your Account</Heading>
+      <Form onSubmit={handleSubmit}>
+        <FormLabel htmlFor="name">Email:</FormLabel>
+        <FormInput
+          name="userEmail"
+          type="email"
+          required
+          placeholder="Enter email"
+        />
+        <FormLabel htmlFor="Password">Password:</FormLabel>
+        <FormInput
+          name="userPassword"
+          type="password"
+          placeholder="Enter password"
+          required
+          minLength={7}
+        />
+        <FormBtn type="submit">Sign In</FormBtn>
+      </Form>
+    </Main>
   );
 };
 

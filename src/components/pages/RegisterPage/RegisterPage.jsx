@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { selectAuthentificated } from 'redux/selectors';
 import { registerUserThunk } from 'redux/operations';
+import { Form, FormBtn, FormInput, FormLabel } from './RegisterPage.styled';
+import { Heading, Main } from '../HomePage/HomePage.styled';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -12,7 +14,6 @@ const RegisterPage = () => {
     event.preventDefault();
 
     const form = event.currentTarget;
-
     const name = form.elements.userName.value;
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
@@ -29,27 +30,38 @@ const RegisterPage = () => {
   if (authenticated) return <Navigate to="/contacts" />;
 
   return (
-    <div>
-      <h1>Register Your Account</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Name:</p>
-          <input name="userName" type="text" required minLength={2} />
-        </label>
-        <br />
-        <label>
-          <p>Email:</p>
-          <input name="userEmail" type="email" required />
-        </label>
-        <br />
-        <label>
-          <p>Password:</p>
-          <input name="userPassword" type="password" required minLength={7} />
-        </label>
-        <br />
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+    <Main>
+      <Heading>Register Your Account</Heading>
+      <Form onSubmit={handleSubmit}>
+        <FormLabel htmlFor="name">Name:</FormLabel>
+        <FormInput
+          name="userName"
+          type="text"
+          required
+          placeholder="Enter name"
+          minLength={2}
+        />
+
+        <FormLabel htmlFor="email">Email:</FormLabel>
+        <FormInput
+          name="userEmail"
+          type="email"
+          placeholder="Enter email"
+          required
+        />
+
+        <FormLabel htmlFor="Password">Password:</FormLabel>
+        <FormInput
+          name="userPassword"
+          type="password"
+          placeholder="Enter password"
+          required
+          minLength={7}
+        />
+
+        <FormBtn type="submit">Sign Up</FormBtn>
+      </Form>
+    </Main>
   );
 };
 

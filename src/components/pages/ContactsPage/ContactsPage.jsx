@@ -14,17 +14,15 @@ import Filter from 'components/Filter/Filter';
 import { Container, Heading, Section, SubHeading } from 'components';
 import { fetchContacts } from 'redux/operations';
 
-
-
 const Contacts = () => {
-    const dispatch = useDispatch();
-    
+  const dispatch = useDispatch();
+
   useEffect(() => {
-       if (!selectAuthentificated) return;
+    if (!selectAuthentificated) return;
 
     dispatch(fetchContacts());
   }, [dispatch]);
-    
+
   return (
     <Section>
       <Container>
