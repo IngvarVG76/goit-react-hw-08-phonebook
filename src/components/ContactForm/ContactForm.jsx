@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Form, FormLabel, FormInput, FormBtn } from './ContactForm.styled';
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/operationsContacts';
+import { selectContacts } from 'redux/contacts/selectorsContacts';
 
 const ContactForm = () => {
   const dispatch = useDispatch();

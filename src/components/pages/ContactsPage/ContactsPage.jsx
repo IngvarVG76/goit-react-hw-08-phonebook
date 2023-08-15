@@ -3,16 +3,19 @@ import { useDispatch } from 'react-redux';
 
 import {
   selectAuthentificated,
+} from 'redux/auth/selectorsAuth';
+
+import {
   selectIsLoading,
   selectError,
-} from 'redux/selectors';
+} from 'redux/contacts/selectorsContacts';
 
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
 
 import { Container, Heading, Section, SubHeading } from 'components';
-import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/contacts/operationsContacts';
 
 const Contacts = () => {
   const dispatch = useDispatch();

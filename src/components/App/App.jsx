@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { refreshUserThunk } from 'redux/operations';
-import { selectAuthentificated } from 'redux/selectors';
+import { refreshUserThunk } from 'redux/auth/operationsAuth';
 
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
@@ -16,9 +15,6 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (!selectToken || selectAuthentificated) return;
-    if (!selectAuthentificated) return;
-
     dispatch(refreshUserThunk());
   }, [dispatch]);
 

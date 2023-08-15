@@ -41,11 +41,16 @@ export const loginUserThunk = createAsyncThunk(
   }
 );
 
+
 export const refreshUserThunk = createAsyncThunk(
   'auth/refreshUser',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
+
+    if (token == null) {
+      return thunkAPI.rejectWithValue('No token');
+    }
 
     try {
       setToken(token);
@@ -68,54 +73,6 @@ export const logoutUserThunk = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
-  async (_, thunkAPI) => {
-    try {
-      const response = await $instance.get('/contacts');
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
-
-export const addContact = createAsyncThunk(
-  'contacts/addContact',
-  async (newContact, thunkAPI) => {
-    try {
-      const response = await $instance.post('/contacts', newContact);
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
-
-export const updateContact = createAsyncThunk(
-  'contacts/updateContact',
-  async ({ id, updatedData }, thunkAPI) => {
-    try {
-      const response = await $instance.patch(`/contacts/${id}`, updatedData);
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
-
-export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
-  async (id, thunkAPI) => {
-    try {
-      const response = await $instance.delete(`/contacts/${id}`);
-      return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updateFilter } from 'redux/contactsSlice';
+import { updateFilter } from 'redux/contacts/contactsSlice';
 import { FilterSection, FilterLabel, FilterInput } from './Filter.styled';
 
 const Filter = () => {
@@ -18,8 +18,8 @@ const Filter = () => {
         type="text"
         name="filter"
         placeholder="Search"
-        value={filter} 
-        onChange={handleFilterChange} 
+        value={filter}
+        onChange={handleFilterChange}
       />
     </FilterSection>
   );

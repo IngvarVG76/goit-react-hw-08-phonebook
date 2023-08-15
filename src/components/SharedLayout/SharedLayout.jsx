@@ -1,15 +1,28 @@
 import { Outlet } from 'react-router-dom';
 
-import { CustomFcBusinessman, Header, LogOutBtn, LogedInNav, LogedOutNav, Nav, StyledNavLink, UserEmail, UserInfo } from './SharedLayout.styled';
-import { selectAuthentificated, selectUserData } from 'redux/selectors';
+import {
+  CustomFcBusinessman,
+  Header,
+  LogOutBtn,
+  LogedInNav,
+  LogedOutNav,
+  Nav,
+  StyledNavLink,
+  UserEmail,
+  UserInfo,
+} from './SharedLayout.styled';
+import {
+  selectAuthentificated,
+  selectUserData,
+} from 'redux/auth/selectorsAuth';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUserThunk } from 'redux/operations';
+import { logoutUserThunk } from 'redux/auth/operationsAuth';
 
 export const SharedLayout = () => {
   const dispatch = useDispatch();
   const authentificated = useSelector(selectAuthentificated);
   const userData = useSelector(selectUserData);
-  
+
   const handleLogOut = () => {
     dispatch(logoutUserThunk());
   };

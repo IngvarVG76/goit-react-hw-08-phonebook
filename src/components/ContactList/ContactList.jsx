@@ -1,24 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/contacts/operationsContacts';
 import { ContList, ContItem, ContButton } from './ContactList.styled';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { selectContacts, selectFilter } from 'redux/contacts/selectorsContacts';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-    const contacts = useSelector(selectContacts);
-    const filter = useSelector(selectFilter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
   };
-  
+
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   if (filteredContacts.length === 0 && filter) {
     return <p>No such name</p>;
-  };
+  }
 
   return (
     <ContList>

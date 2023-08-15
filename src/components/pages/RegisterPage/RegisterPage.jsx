@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { selectAuthentificated } from 'redux/selectors';
-import { registerUserThunk } from 'redux/operations';
+import { selectAuthentificated } from 'redux/auth/selectorsAuth';
+import { registerUserThunk } from 'redux/auth/operationsAuth';
 import { Form, FormBtn, FormInput, FormLabel } from './RegisterPage.styled';
 import { Heading, Main } from '../HomePage/HomePage.styled';
 
